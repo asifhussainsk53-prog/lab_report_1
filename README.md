@@ -111,7 +111,7 @@ http://localhost:3000/unknown
 
 ## Screenshots
 
-Screenshots are not currently available in this workspace. The following relative paths are reserved for the completed lab submission:
+
 
 ![Home Route](./Screenshot%202026-10-16%20133847.png)
 
@@ -122,6 +122,8 @@ Screenshots are not currently available in this workspace. The following relativ
 ![404 Route](./Screenshot%202026-10-16%20134000.png)
 
 To deploy the application, use a Node.js-compatible hosting service, configure the service to install dependencies with `npm install`, and start the application with `node server.js`. The application currently listens on port 3000, so configure the hosting provider accordingly. After deployment, add the actual public URL to this README.
+
+LIVE LINK:https://lab-report-1-4.onrender.com/
 
 ## Problems Faced and Solutions
 
@@ -147,7 +149,6 @@ To deploy the application, use a Node.js-compatible hosting service, configure t
 
 The following files and directories must not be committed to GitHub:
 
-LIVE LINK:https://lab-report-1-4.onrender.com/
 ```gitignore
 node_modules/
 .env
