@@ -115,11 +115,11 @@ Screenshots are not currently available in this workspace. The following relativ
 
 ![Home Route](./Screenshot%202026-10-16%20133847.png)
 
-![About Route](screenshots/about.png)
+![About Route](./Screenshot%202026-10-16%20133907.png)
 
-![Time Route](screenshots/time.png)
+![Time Route](./)
 
-![404 Route](screenshots/404.png)
+![404 Route](./)
 
 To deploy the application, use a Node.js-compatible hosting service, configure the service to install dependencies with `npm install`, and start the application with `node server.js`. The application currently listens on port 3000, so configure the hosting provider accordingly. After deployment, add the actual public URL to this README.
 
