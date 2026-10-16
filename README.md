@@ -147,6 +147,7 @@ To deploy the application, use a Node.js-compatible hosting service, configure t
 
 The following files and directories must not be committed to GitHub:
 
+LIVE LINK:https://lab-report-1-4.onrender.com/
 ```gitignore
 node_modules/
 .env
