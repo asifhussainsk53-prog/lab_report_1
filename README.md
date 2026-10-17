@@ -1,11 +1,8 @@
 # Lab 1: Node.js and Express Server
 
-**Subject:** Backend Development Fundamentals
-
-**Year/Term:** Year II, Term II
-
-**University:** Aurora Deemed to be University
-
+**Subject:** Backend Development Fundamentals  
+**Year/Term:** Year II, Term II  
+**University:** Aurora Deemed to be University  
 **Faculty:** Mr. Joel Prashanth D
 
 ## Student Details
@@ -18,9 +15,7 @@
 
 ## Project Objective
 
-This lab demonstrates the fundamentals of creating and running a Node.js backend server with Express.js. It covers project initialization with npm, dependency installation, Express application setup, route handling, JSON responses, date and time generation, HTTP status codes, and handling unknown routes.
-
-The application in `server.js` uses Express.js and listens on port 3000.
+This project demonstrates how to build a small Express.js backend, serve JSON and text responses, and prepare the app for deployment on Render. The application exposes a few simple routes and uses a portable port configuration so it can run locally or in a cloud environment.
 
 ## Technologies Used
 
@@ -28,77 +23,66 @@ The application in `server.js` uses Express.js and listens on port 3000.
 - Express.js `^5.3.0`
 - npm
 - JavaScript (CommonJS)
-- HTTP and JSON response handling
+- Render deployment configuration
 
-## Project Folder Structure
+## Project Structure
 
 ```text
 lab-01/
-├── server.js
+├── .gitignore
+├── README.md
 ├── package.json
 ├── package-lock.json
-├── README.md
-├── .gitignore                 # Recommended; do not commit dependencies or secrets
-└── screenshots/               # Add route screenshots here when available
-    ├── home.png
-    ├── about.png
-    ├── time.png
-    └── 404.png
+├── server.js
+├── Screenshots/
+│   ├── about.png
+│   ├── error.png
+│   ├── home.png
+│   └── time.png
+└── node_modules/      # generated locally and excluded from Git tracking
 ```
 
-> `screenshots/` and `.gitignore` are referenced as submission items, but they may need to be added to the project before final submission.
+## Prerequisites
 
-## Installation and Execution
+- Node.js 18 or later
+- npm
 
-### Prerequisites
+## Installation
 
-- Node.js and npm installed on the computer
-
-### Install dependencies
-
-1. Open a terminal in the project directory.
-2. Initialize a project if starting from an empty folder:
-
-   ```bash
-   npm init -y
-   ```
-
-3. Install Express:
-
-   ```bash
-   npm install express
-   ```
-
-   For an existing checkout, `npm install` installs the dependencies recorded in `package-lock.json`:
-
-   ```bash
-   npm install
-   ```
-
-### Start the server
-
-Run the server from the project directory:
+From the project root, run:
 
 ```bash
-node server.js
+npm install
 ```
 
-The server listens on:
+## Run Locally
+
+Start the server:
+
+```bash
+npm start
+```
+
+The app listens on:
 
 ```text
 http://localhost:3000
 ```
 
-Stop the server with `Ctrl+C`.
+You can also override the port locally with:
 
-## Endpoints
+```bash
+PORT=4000 npm start
+```
 
-| HTTP Method | Path             | Description                                           | Expected Status Code |
-| ----------- | ---------------- | ----------------------------------------------------- | -------------------: |
-| GET         | `/`              | Returns `Welcome to my server!`                       |                  200 |
-| GET         | `/about`         | Returns JSON containing the name `Asif` and section `Gen AI` |            200 |
-| GET         | `/time`          | Returns the current date and time generated with `new Date()` |        200 |
-| Any         | Any unknown path | Returns `Page Not Found` through the 404 middleware   |                  404 |
+## Available Routes
+
+| Method | Route | Description |
+| --- | --- | --- |
+| GET | `/` | Returns the welcome message for the server |
+| GET | `/about` | Returns a JSON object with the student name and section |
+| GET | `/time` | Returns the current date and time |
+| Any | `*` | Returns a 404 message for unknown routes |
 
 Example requests:
 
@@ -111,47 +95,87 @@ http://localhost:3000/unknown
 
 ## Screenshots
 
+The project includes screenshot evidence in the `Screenshots/` folder:
 
+- `Screenshots/home.png`
+- `Screenshots/about.png`
+- `Screenshots/time.png`
+- `Screenshots/error.png`
 
-![Home Route](./Screenshot%202026-10-16%20133847.png)
+## Testing the Application
 
-![About Route](./Screenshot%202026-10-16%20133907.png)
+1. Install dependencies with `npm install`.
+2. Start the server with `npm start`.
+3. Open the routes in a browser or with curl:
 
-![Time Route](./Screenshot%202026-10-16%20133929.png)
+```bash
+curl http://localhost:3000/
+curl http://localhost:3000/about
+curl http://localhost:3000/time
+curl http://localhost:3000/unknown
+```
 
-![404 Route](./Screenshot%202026-10-16%20134000.png)
+Expected responses:
 
-To deploy the application, use a Node.js-compatible hosting service, configure the service to install dependencies with `npm install`, and start the application with `node server.js`. The application currently listens on port 3000, so configure the hosting provider accordingly. After deployment, add the actual public URL to this README.
+- `/` returns a welcome message
+- `/about` returns JSON
+- `/time` returns a date string
+- `/unknown` returns `404 Page Not Found`
 
-LIVE LINK:https://lab-report-1-4.onrender.com/
+## GitHub Repository Usage
 
-## Problems Faced and Solutions
+This project is intended to be pushed to the repository:
 
-| Problem                                          | Solution                                                                                                                   |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| Understanding how npm manages a Node.js project  | Used `npm init -y` to create `package.json` and reviewed the project metadata and scripts.                                 |
-| Express was not available by default             | Installed Express with `npm install express`, which also updated `package.json`, `package-lock.json`, and `node_modules/`. |
-| Different routes need different response formats | Used `res.send()` for text responses and `res.json()` for the `/about` response.                                           |
-| Unknown URLs should return an error response     | Added a final Express middleware that sends a 404 response for unmatched paths.                                            |
+```text
+https://github.com/asifhussainsk53-prog/lab_report_1
+```
+
+If the repository is not already connected locally, set the remote:
+
+```bash
+git remote add origin https://github.com/asifhussainsk53-prog/lab_report_1.git
+git branch -M main
+git push -u origin main
+```
+
+## Render Deployment
+
+Use the following Render settings:
+
+- Runtime: Node.js
+- Branch: `main`
+- Root Directory: empty (repository root)
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Instance Type: Free
+
+Render automatically provides the `PORT` environment variable, so the app uses `process.env.PORT || 3000` and remains compatible with cloud hosting.
+
+## Environment Variables
+
+This project does not require a database or secret credentials. For local development, the optional variable is:
+
+```env
+PORT=3000
+```
+
+Do not commit `.env` files or private tokens.
+
+## Common Errors and Troubleshooting
+
+- `npm start` fails with `Cannot find module 'express'`: run `npm install`.
+- The app starts on the wrong port: confirm that Render sets `PORT` or set `PORT=3000` locally.
+- `Page Not Found` appears unexpectedly: verify the route path and the server is running.
+- `git status` shows `node_modules` or `.env`: ensure `.gitignore` is present, and remove any accidental tracking with `git rm -r --cached node_modules` if necessary.
 
 ## Learning Outcomes
 
 - Created a Node.js project with npm.
-- Understood the purpose of `package.json`, `package-lock.json`, and `node_modules/`.
 - Installed and used Express.js.
-- Created an Express application that listens on port 3000.
-- Implemented GET routes and returned text and JSON responses.
-- Generated the current date and time using `new Date()`.
-- Applied HTTP status codes for successful and unknown requests.
-- Practiced documenting and preparing a backend project for deployment.
+- Built GET routes for text and JSON responses.
+- Used environment variables for deployment-friendly port binding.
+- Prepared the project for deployment on Render.
 
-## Git Hygiene
+## Notes
 
-The following files and directories must not be committed to GitHub:
-
-```gitignore
-node_modules/
-.env
-```
-
-Create a `.gitignore` file in the project root containing these entries before committing the project. Never commit credentials, API keys, or other environment-specific secrets.
+This README is written to reflect the actual implementation in the current workspace. The application is ready for deployment configuration, but no live deployment claim is made unless the project has been successfully deployed and checked in Render.
